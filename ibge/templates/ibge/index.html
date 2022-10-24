@@ -1,0 +1,23 @@
+{% extends 'ibge/base.html' %}
+
+{% block title %}IBGE{% endblock title %}
+
+{% block content %}
+
+<section class="container">
+  <h1>IBGE</h1>
+  <h2>Regições do Brasil</h2>
+</section>
+
+<div class="container">
+  <form action="" method="post">
+    {% csrf_token %}
+    <select name="" id="">
+    {% for indice, regioes in regioes.items %}
+      <option value="{{ regioes.nome }}">{{ regioes.nome }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Pesquisar">
+</form>
+</div>
+{% endblock content %}
