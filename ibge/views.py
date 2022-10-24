@@ -10,21 +10,32 @@ def index(request):
     except ValueError:
         print("A resposta não chegou com o formato esperado.")
 
-    dicionario = {}
+    dicionario_regioes = {}
     for indice, valor in enumerate(lista):
-        dicionario[indice] = valor
+        dicionario_regioes[indice] = valor
+    
 
     contexto = {
-        "regioes": dicionario
+        "regioes": dicionario_regioes
     }
 
     return render(request, "ibge\index.html", contexto)
 
 def estados(request):
     api_estados = "https://servicodados.ibge.gov.br/api/v1/localidades/estados"
+    requisicao_estados = requests.get(api_estados)
+
     
-    try:
-        pass
-    except ValueError:
-        pass
+    lista = requisicao_estados.json()
+    
+    dicionario_estados = {}
+    for indice, valor in enumerate(lista):
+        dicionario_estados[indice] = valor
+        
+    contexto = {
+        "estados": dicionario_estados
+    }
+    
+
+    return render(request, "ibge\estados.html", contexto)
     
