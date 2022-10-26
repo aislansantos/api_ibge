@@ -4,16 +4,28 @@
 
 {% block content %}
 <div class="container">
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nome</th>
+                <th>Sigla</th>
+                <th>Estado</th>
+                <th>Região</th>
             </tr>
         </thead>
         <tbody>
+            {% for indice, estado in estados.items %}
             <tr>
-                <td></td>
+                <td>
+                    {{ estado.sigla }}
+                </td>
+                <td>
+                    {{ estado.nome }}
+                </td>
+                <td>
+                    {{ estado.regiao.nome }}
+                </td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
