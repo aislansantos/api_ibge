@@ -5,14 +5,14 @@
 {% block content %}
 
 <div class="container">
-  <form action="" method="get">
+  <form action="{% url 'estados' %}" method="get">
     {% csrf_token %}
-    <select name="id" id="id">
+    <select name="regi" id="regi">
       {% for indice, regioes in regioes.items %}
-      <option value="{{ regioes.id }}">{{ regioes.nome }}</option>
+      <option value="{{ regioes.nome }}">{{ regioes.nome }}</option>
       {% endfor %}
     </select>
-    <a href="{% url 'estados' regioes.id %}" class="btn btn-info btn-sm">Pesquisar</a>
+    <button type="submit">Pesquisar</button>
   </form>
 </div>
 {% endblock content %}

@@ -28,14 +28,15 @@ def estados(request):
     
     lista = requisicao_estados.json()
     
+    regiao_selecionada = request.GET['regi']
+    
     dicionario_estados = {}
     for indice, valor in enumerate(lista):
         dicionario_estados[indice] = valor
-        
     contexto = {
-        "estados": dicionario_estados
+        "estados": dicionario_estados,
+        "regiao_selecionada" : regiao_selecionada,
     }
     
-
     return render(request, "ibge\estados.html", contexto)
     

@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="container">
+    <h2>Região selecionada: {{ regiao_selecionada }}</h2>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -13,19 +14,20 @@
             </tr>
         </thead>
         <tbody>
-            {% for indice, estado in estados.items %}
-            <tr>
-                <td>
-                    {{ estado.sigla }}
-                </td>
-                <td>
-                    {{ estado.nome }}
-                </td>
-                <td>
-                    {{ estado.regiao.nome }}
-                </td>
-            </tr>
-            {% endfor %}
+            
+                {% for indice, estado in estados.items %}
+                    {% if regiao_selecionada == estado.regiao.nome %}
+                    <tr>
+                        <td>
+                            {{ estado.sigla }}
+                        </td>
+                        <td>
+                            {{ estado.nome }}
+                        </td>
+                        <td>{{ estado.regiao.sigla }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
         </tbody>
     </table>
 </div>
