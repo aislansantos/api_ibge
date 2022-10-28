@@ -8,6 +8,7 @@
   <form action="{% url 'estados' %}" method="get">
     {% csrf_token %}
     <select name="regi" id="regi">
+      <option value="brasil">Brasil</option>
       {% for indice, regioes in regioes.items %}
       <option value="{{ regioes.nome }}">{{ regioes.nome }}</option>
       {% endfor %}

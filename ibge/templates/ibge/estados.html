@@ -1,9 +1,10 @@
 {% extends 'ibge/base.html' %}
 
-{% block title %}Estados{% endblock title %}
+{% block title %}Estados: {{regiao_selecionada}}{% endblock title %}
 
 {% block content %}
 <div class="container">
+    <a href="{% url 'index' %}" class="btn btn-warning">Voltar</a>
     <h2>Região selecionada: {{ regiao_selecionada }}</h2>
     <table class="table table-striped">
         <thead>
@@ -13,20 +14,28 @@
             </tr>
         </thead>
         <tbody>
-            
-                {% for indice, estado in estados.items %}
-                    {% if regiao_selecionada == estado.regiao.nome %}
-                    <tr>
-                        <td>
-                            {{ estado.sigla }}
-                        </td>
-                        <td>
-                            {{ estado.nome }}
-                        </td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
+
+            {% for indice, estado in estados.items %}
+            {% if regiao_selecionada == estado.regiao.nome %}
+            <tr>
+                <td>
+                    {{ estado.sigla }}
+                </td>
+                <td>
+                    {{ estado.nome }}
+                </td>
+            {% elif regiao_selecionada == 'brasil' %}
+                <td>
+                    {{ estado.sigla }}
+                </td>
+                <td>
+                    {{ estado.nome }}
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
         </tbody>
     </table>
 </div>
+    
 {% endblock content %}

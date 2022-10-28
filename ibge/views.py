@@ -26,17 +26,21 @@ def estados(request):
     requisicao_estados = requests.get(api_estados)
 
     
-    lista = requisicao_estados.json()
+    lista_estados = requisicao_estados.json()
     
     regiao_selecionada = request.GET['regi']
     
     dicionario_estados = {}
-    for indice, valor in enumerate(lista):
+    for indice, valor in enumerate(lista_estados):
         dicionario_estados[indice] = valor
+        
+        
+    
     contexto = {
         "estados": dicionario_estados,
         "regiao_selecionada" : regiao_selecionada,
-    }
-    
+    }    
     return render(request, "ibge\estados.html", contexto)
-    
+
+def dados_regioes(request):
+    pass
