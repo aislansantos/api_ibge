@@ -5,15 +5,22 @@
 {% block content %}
 
 <div class="container">
+  <p>Bem vindo a aplicação para consulta de dados do IBGE, por favor selecione a região que deseja consultar</p>
   <form action="{% url 'estados' %}" method="get">
     {% csrf_token %}
-    <select name="regi" id="regi">
-      <option value="brasil">Brasil</option>
-      {% for indice, regioes in regioes.items %}
-      <option value="{{ regioes.nome }}">{{ regioes.nome }}</option>
-      {% endfor %}
-    </select>
-    <button type="submit">Pesquisar</button>
+    <div class="row">
+      <div class="col-sm">
+        <select name="regi" id="regi" class="form-control">
+          <option value="Brasil">Brasil</option>
+          {% for indice, regioes in regioes.items %}
+          <option value="{{ regioes.nome }}">{{ regioes.nome }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-sm">
+        <button type="submit" class="btn btn-info">Pesquisar</button>
+      </div>
+    </div>
   </form>
 </div>
 {% endblock content %}

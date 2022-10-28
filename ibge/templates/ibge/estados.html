@@ -7,14 +7,22 @@
     <a href="{% url 'index' %}" class="btn btn-warning">Voltar</a>
     <h2>Região selecionada: {{ regiao_selecionada }}</h2>
     <table class="table table-striped">
+
         <thead>
+            {% if regiao_selecionada != 'Brasil'%}
             <tr>
                 <th>Sigla</th>
                 <th>Estado</th>
             </tr>
+            {% else %}
+            <tr>
+                <th>Sigla</th>
+                <th>Estado</th>
+                <th>Região</th>
+            </tr>
+            {% endif %}
         </thead>
         <tbody>
-
             {% for indice, estado in estados.items %}
             {% if regiao_selecionada == estado.regiao.nome %}
             <tr>
@@ -24,12 +32,17 @@
                 <td>
                     {{ estado.nome }}
                 </td>
-            {% elif regiao_selecionada == 'brasil' %}
+            </tr>
+            {% elif regiao_selecionada == 'Brasil' %}
+            <tr>
                 <td>
                     {{ estado.sigla }}
                 </td>
                 <td>
                     {{ estado.nome }}
+                </td>
+                <td>
+                    {{ estado.regiao.nome }}
                 </td>
             </tr>
             {% endif %}
@@ -37,5 +50,5 @@
         </tbody>
     </table>
 </div>
-    
+
 {% endblock content %}
