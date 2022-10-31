@@ -10,3 +10,4 @@ Projeto com foco para estudo em consumo de API usando DJANGO, usando nesse caso 
 > Endereços da API usados:
 >> - https://servicodados.ibge.gov.br/api/v1/localidades/regioes
 >> - https://servicodados.ibge.gov.br/api/v1/localidades/estados
+>> - https://servicodados.ibge.gov.br/api/v1/projecoes/populacao/{localidade}

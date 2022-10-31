@@ -10,10 +10,10 @@
     {% csrf_token %}
     <div class="row">
       <div class="col-sm">
-        <select name="regi" id="regi" class="form-control">
+        <select name="regiao" id="regi" class="form-control">
           <option value="Brasil">Brasil</option>
           {% for indice, regioes in regioes.items %}
-          <option value="{{ regioes.nome }}">{{ regioes.nome }}</option>
+          <option value="{{ regioes.id }}">{{ regioes.nome }}</option>
           {% endfor %}
         </select>
       </div>

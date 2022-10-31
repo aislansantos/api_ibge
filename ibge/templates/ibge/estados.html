@@ -1,54 +1,71 @@
 {% extends 'ibge/base.html' %}
 
-{% block title %}Estados: {{regiao_selecionada}}{% endblock title %}
+{% block title %}Dados Região{% endblock title %}
 
 {% block content %}
 <div class="container">
-    <a href="{% url 'index' %}" class="btn btn-warning">Voltar</a>
-    <h2>Região selecionada: {{ regiao_selecionada }}</h2>
-    <table class="table table-striped">
-
-        <thead>
-            {% if regiao_selecionada != 'Brasil'%}
-            <tr>
-                <th>Sigla</th>
-                <th>Estado</th>
-            </tr>
-            {% else %}
-            <tr>
-                <th>Sigla</th>
-                <th>Estado</th>
-                <th>Região</th>
-            </tr>
+    <hr>
+    <div class="row">
+        <div class="col-sm">
+            <h3>Estados</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Sigla</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for indice, estado in estados.items %}
+                    {% if regiao_selecionada == estado.regiao.id %}
+                    <tr>
+                        <td>
+                            {{ estado.sigla }}
+                        </td>
+                        <td>
+                            {{ estado.nome }}
+                        </td>
+                        {% elif regiao_selecionada == 0 %}
+                        <td>
+                            {{ estado.sigla }}
+                        </td>
+                        <td>
+                            {{ estado.nome }}
+                        </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm">
+            <h3>Projeções</h3>
+            <hr>
+            <P>
+                data e hora:
+                {{ dados_projecoes.horario }}
+            </P>
+            <p>
+                População:
+                {{ dados_projecoes.projecao.populacao }}
+            </p>
+            <p>
+                Incremento Populacional:
+                {{ dados_projecoes.projecao.periodoMedio.incrementoPopulacional }}
+            </p>
+            {% if regiao_selecionada == 0 %}
+            <p>
+                Nascimentos:
+                {{ dados_projecoes.projecao.periodoMedio.nascimento }}
+            </p>
+            <p>
+                Óbitos:
+                {{ dados_projecoes.projecao.periodoMedio.obito }}
+            </p>
             {% endif %}
-        </thead>
-        <tbody>
-            {% for indice, estado in estados.items %}
-            {% if regiao_selecionada == estado.regiao.nome %}
-            <tr>
-                <td>
-                    {{ estado.sigla }}
-                </td>
-                <td>
-                    {{ estado.nome }}
-                </td>
-            </tr>
-            {% elif regiao_selecionada == 'Brasil' %}
-            <tr>
-                <td>
-                    {{ estado.sigla }}
-                </td>
-                <td>
-                    {{ estado.nome }}
-                </td>
-                <td>
-                    {{ estado.regiao.nome }}
-                </td>
-            </tr>
-            {% endif %}
-            {% endfor %}
-        </tbody>
-    </table>
+        </div>
+    </div>
+    <a href="{% url 'index' %}" class="btn btn-info">Voltar</a>
 </div>
 
 {% endblock content %}
