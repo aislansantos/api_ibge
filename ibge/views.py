@@ -3,7 +3,7 @@ from django.shortcuts import render
 import requests
 
 def index(request):
-    api_regioes = "https://servicodados.ibge.gov.br/api/v1/localidades/regioes"
+    api_regioes = "http://servicodados.ibge.gov.br/api/v1/localidades/regioes"
     requisicao_regioes = requests.get(api_regioes)
 
     try:
@@ -20,10 +20,10 @@ def index(request):
         "regioes": dicionario_regioes
     }
 
-    return render(request, "ibge\index.html", contexto)
+    return render(request, "ibge/index.html", contexto)
 
 def estados(request):
-    api_estados = "https://servicodados.ibge.gov.br/api/v1/localidades/estados"
+    api_estados = "http://servicodados.ibge.gov.br/api/v1/localidades/estados"
     requisicao_estados = requests.get(api_estados)
     lista_estados = requisicao_estados.json()
     
@@ -33,7 +33,7 @@ def estados(request):
     else:
         regiao_selecionada = str(0)
     
-    api_regiao_selecionada = 'https://servicodados.ibge.gov.br/api/v1/projecoes/populacao/' + regiao_selecionada
+    api_regiao_selecionada = 'http://servicodados.ibge.gov.br/api/v1/projecoes/populacao/' + regiao_selecionada
     requisicao_regiao = requests.get(api_regiao_selecionada)
     dados_regiao = requisicao_regiao.json()
      
@@ -52,7 +52,7 @@ def estados(request):
         "regiao_selecionada" : int(regiao_selecionada),
         "dados_projecoes" : dados_regiao,
     }    
-    return render(request, "ibge\estados.html", contexto)
+    return render(request, "ibge/estados.html", contexto)
 
 def dados_regioes(request):
     pass

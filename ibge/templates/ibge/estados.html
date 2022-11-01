@@ -7,12 +7,13 @@
     <hr>
     <div class="row">
         <div class="col-sm">
-            <h3>Estados</h3>
-            <table class="table table-striped">
+            <h3 class="alert bg-light text-dark">Estados</h3>
+            <table class="table table-striped ">
                 <thead>
                     <tr>
                         <th>Sigla</th>
                         <th>Estado</th>
+                        <th>Região</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,9 @@
                         <td>
                             {{ estado.nome }}
                         </td>
+                        <td>
+                            {{ estado.regiao.nome }}
+                        </td>
                         {% elif regiao_selecionada == 0 %}
                         <td>
                             {{ estado.sigla }}
@@ -32,6 +36,10 @@
                         <td>
                             {{ estado.nome }}
                         </td>
+                        <td>
+                            {{ estado.regiao.nome }}
+                        </td>
+                        
                     </tr>
                     {% endif %}
                     {% endfor %}
@@ -39,30 +47,32 @@
             </table>
         </div>
         <div class="col-sm">
-            <h3>Projeções</h3>
+            <h3 class="alert bg-light text-dark">Projeções</h3>
             <hr>
-            <P>
-                data e hora:
-                {{ dados_projecoes.horario }}
-            </P>
-            <p>
-                População:
-                {{ dados_projecoes.projecao.populacao }}
-            </p>
-            <p>
-                Incremento Populacional:
-                {{ dados_projecoes.projecao.periodoMedio.incrementoPopulacional }}
-            </p>
-            {% if regiao_selecionada == 0 %}
-            <p>
-                Nascimentos:
-                {{ dados_projecoes.projecao.periodoMedio.nascimento }}
-            </p>
-            <p>
-                Óbitos:
-                {{ dados_projecoes.projecao.periodoMedio.obito }}
-            </p>
-            {% endif %}
+            <div class="p-3 mb-2 bg-light text-dark">
+                <P>
+                    data e hora:
+                    {{ dados_projecoes.horario }}
+                </P>
+                <p>
+                    População:
+                    {{ dados_projecoes.projecao.populacao }}
+                </p>
+                <p>
+                    Incremento Populacional:
+                    {{ dados_projecoes.projecao.periodoMedio.incrementoPopulacional }}
+                </p>
+                {% if regiao_selecionada == 0 %}
+                <p>
+                    Nascimentos:
+                    {{ dados_projecoes.projecao.periodoMedio.nascimento }}
+                </p>
+                <p>
+                    Óbitos:
+                    {{ dados_projecoes.projecao.periodoMedio.obito }}
+                </p>
+                {% endif %}
+            </div>
         </div>
     </div>
     <a href="{% url 'index' %}" class="btn btn-info">Voltar</a>
